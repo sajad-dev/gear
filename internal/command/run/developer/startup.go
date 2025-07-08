@@ -9,8 +9,7 @@ type AutoCompile struct {
 	ProjectPath string
 	ExecPath    string
 	TestPath    string
-	Port        int
-	Addr        string
+	Test        bool
 }
 
 func (a *AutoCompile) GenerateFile() error {

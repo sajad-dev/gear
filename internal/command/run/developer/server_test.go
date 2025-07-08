@@ -10,7 +10,7 @@ func TestServer_Run(t *testing.T) {
 	st := AutoCompile{
 		ExecPath: "sample/main.go",
 	}
-
-	err := st.Run()
-	assert.NoError(t,err)
+	close := make(chan int)
+	err := st.Run(close)
+	assert.NoError(t, err)
 }

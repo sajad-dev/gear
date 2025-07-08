@@ -1,21 +1,63 @@
 package developer
 
 import (
-	"bytes"
+	"bufio"
 	"os/exec"
+
+	"github.com/fatih/color"
+	"github.com/sajad-dev/gear/internal/config"
 )
 
-func (a *AutoCompile) Run() error {
-	runServer := exec.Command("go", "run", a.ExecPath)
+// func (a *AutoCompile) Run(close chan int) error {
+// 	go func() {
+// 		cmd := exec.Command("go", "run", a.ExecPath)
 
-	var stderr, stdout bytes.Buffer
-	runServer.Stderr = &stderr
-	runServer.Stdout = &stdout
+// 		stdout, err := cmd.StdoutPipe()
+// 		if err != nil {
+// 			color.Red("stdout error: %v", err)
+// 		}
+// 		stderr, err := cmd.StderrPipe()
+// 		if err != nil {
+// 			color.Red("stderr error: %v", err)
+// 		}
 
-	if err := runServer.Run(); err != nil {
-		printError(stderr.String())
+// 		if err := cmd.Start(); err != nil {
+// 			color.Blue("Start error: " + err.Error())
+// 		}
+
+// 		go func() {
+// 			scanner := bufio.NewScanner(stdout)
+// 			for scanner.Scan() {
+// 				color.Green(scanner.Text())
+// 			}
+// 		}()
+// 		go func() {
+// 			scanner := bufio.NewScanner(stderr)
+// 			for scanner.Scan() {
+// 				color.Red(scanner.Text())
+// 			}
+// 		}()
+
+// 		done := make(chan error)
+// 		go func() {
+// 			done <- cmd.Wait()
+// 		}()
+
+// 		select {
+// 		case <-close:
+// 			cmd.Process.Kill()
+// 			<-done
+// 		case <-done:
+// 			color.Red("End Process")
+// 		}
+
+//		}()
+//		return nil
+//	}
+func (a *AutoCompile) Run(close chan int, port int) error {
+	_, err := config.Config.Http(port, config.Config.Db)
+	if err != nil {
 		return err
 	}
-
 	return nil
 }
