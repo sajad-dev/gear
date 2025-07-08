@@ -1,9 +1,18 @@
 package developer
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func TestChange_ChangeHandel(t *testing.T) {
-	st := AutoCompile{ProjectPath: "/home/sajad/Documents/Programming/gingo-framework/gear/cmd_test"}
+	st := AutoCompile{
+		ProjectPath: "./sample",
+		BuildPath:   "./sample/build",
+	}
 
-	st.ChangeHandel()
+	chenge, err := st.HandelChange()
+	assert.NoError(t, err)
+	assert.True(t, chenge)
 }
