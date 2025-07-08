@@ -9,7 +9,6 @@ import (
 func TestStartUp_GenerateFile(t *testing.T) {
 	st := AutoCompile{
 		ProjectPath: "./sample",
-		BuildPath:   "./sample/build",
 	}
 	assert.NoError(t, st.GenerateFile())
 }

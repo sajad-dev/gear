@@ -2,13 +2,15 @@ package developer
 
 import (
 	"bytes"
-	"os"
 	"os/exec"
 )
 
 type AutoCompile struct {
 	ProjectPath string
-	BuildPath   string
+	ExecPath    string
+	TestPath    string
+	Port        int
+	Addr        string
 }
 
 func (a *AutoCompile) GenerateFile() error {
@@ -22,10 +24,10 @@ func (a *AutoCompile) GenerateFile() error {
 		return err
 	}
 
-	if err := os.MkdirAll(a.BuildPath, 0755); err != nil {
-		printError(err.Error())
-		return err
-	}
+	// 	if err := os.MkdirAll(a.BuildPath, 0755); err != nil {
+	// 		printError(err.Error())
+	// 		return err
+	// 	}
 
 	return nil
 }

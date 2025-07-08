@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func (a *AutoCompile) HandelChange() (bool, error) {
+func (a *AutoCompile) Chenges() (bool, error) {
 	command := exec.Command("git", "status", a.ProjectPath)
 	statusOutput, err := command.Output()
 	if err != nil {
@@ -26,3 +26,4 @@ func (a *AutoCompile) HandelChange() (bool, error) {
 	}
 	return false, nil
 }
+

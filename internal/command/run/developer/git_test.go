@@ -6,13 +6,12 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestChange_ChangeHandel(t *testing.T) {
+func TestGit_Changes(t *testing.T) {
 	st := AutoCompile{
 		ProjectPath: "./sample",
-		BuildPath:   "./sample/build",
 	}
 
-	chenge, err := st.HandelChange()
+	chenge, err := st.Chenges()
 	assert.NoError(t, err)
 	assert.True(t, chenge)
 }
