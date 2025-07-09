@@ -1,11 +1,13 @@
 package developer
 
 import (
-	"bufio"
-	"os/exec"
+	// "bufio"
+	// "os/exec"
 
-	"github.com/fatih/color"
-	"github.com/sajad-dev/gear/internal/config"
+	// "github.com/fatih/color"
+	"log"
+
+	"github.com/sajad-dev/gear/config"
 )
 
 // func (a *AutoCompile) Run(close chan int) error {
@@ -55,9 +57,11 @@ import (
 //		return nil
 //	}
 func (a *AutoCompile) Run(close chan int, port int) error {
+
 	_, err := config.Config.Http(port, config.Config.Db)
 	if err != nil {
-		return err
+		log.Println(err)
 	}
+
 	return nil
 }

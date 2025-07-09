@@ -9,10 +9,8 @@ import (
 
 func (a *AutoCompile) Loop() error {
 	close := make(chan int)
-	a.Run(close)
-	if a.Test {
-		a.RunTest()
-	}
+	go a.Run(close, a.Port)
+
 
 	color.Blue("Haha Babay run your project !!")
 	for {
@@ -20,7 +18,6 @@ func (a *AutoCompile) Loop() error {
 		if err != nil {
 			return err
 		}
-
 		if chenge {
 			currentTime := time.Now()
 			color.Blue(fmt.Sprintf("Last update at : %s", currentTime.Format("15:04:05")))
@@ -28,9 +25,9 @@ func (a *AutoCompile) Loop() error {
 			close <- 1
 
 			close = make(chan int)
-			a.Run(close)
+			go a.Run(close, a.Port)
 		}
 
-		time.Sleep(time.Second )
+		time.Sleep(time.Second * 2)
 	}
 }

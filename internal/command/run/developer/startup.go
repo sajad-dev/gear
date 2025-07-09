@@ -10,6 +10,7 @@ type AutoCompile struct {
 	ExecPath    string
 	TestPath    string
 	Test        bool
+	Port        int
 }
 
 func (a *AutoCompile) GenerateFile() error {

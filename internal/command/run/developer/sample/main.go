@@ -2,12 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
-	fmt.Println("hahdddnjhk")
-	for {
-		// fmt.Println("Gfdg")
-	}
-	//aakslks
+func main () {
 	fmt.Println("Hello World")
 }
-
+	

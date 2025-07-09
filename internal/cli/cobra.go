@@ -3,7 +3,7 @@ package cli
 import (
 	"os"
 
-	"github.com/sajad-dev/gear/internal/config"
+	"github.com/sajad-dev/gear/config"
 	"github.com/spf13/cobra"
 )
 

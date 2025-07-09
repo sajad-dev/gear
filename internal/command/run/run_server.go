@@ -3,27 +3,34 @@ package run
 import (
 	"fmt"
 	"os/exec"
-	"strings"
 
 	"github.com/fatih/color"
-	"github.com/sajad-dev/gear/internal/config"
+	"github.com/sajad-dev/gear/config"
+	"github.com/sajad-dev/gear/internal/command/run/developer"
 	"github.com/spf13/cobra"
 )
 
-func runDeveloper(port int) {
-	// ou := exec.Command("pwd")
-	// addr, _ := ou.Output()
+func runDeveloper(port int) error {
+	ou := exec.Command("pwd")
+	addr, _ := ou.Output()
+	color.Red(string(addr))
 
-	// com := Compiler{Addr: strings.TrimSpace(string(addr)), Port: 8000, BuildPath: "/home/sajad/Documents/Programming/gingo-framework/gear/build/gear", ExecuteFilePath: "/home/sajad/Documents/Programming/gingo-framework/gear/cmd/main.go"}
+	st := developer.AutoCompile{
+		Port:        port,
+		ProjectPath: string(addr),
+		ExecPath:    fmt.Sprintf("%s/cmd/main.go", string(addr)),
+	}
+	err := st.GenerateFile()
+	if err != nil {
+		return err
+	}
 
-	// // color.Blue("Adress Local : http://127.0.0.1:8000")
+	err = st.Loop()
+	if err != nil {
+		return err
+	}
 
-	// // fmt.Println(com)
-
-	// com.Run()
-	// com.RunTest()
-
-	// com.Compile()
+	return nil
 
 }
 func runProduction(port int) error {

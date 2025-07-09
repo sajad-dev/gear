@@ -2,7 +2,7 @@ package migration
 
 import (
 	"github.com/fatih/color"
-	"github.com/sajad-dev/gear/internal/config"
+	"github.com/sajad-dev/gear/config"
 )
 
 func Migrate() error {
