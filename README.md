@@ -186,16 +186,16 @@ The framework includes built-in test utilities and supports standard Go testing 
 
 ```bash
 # Start development server on port 3000
-./myapp run dev -p 3000
+./gear run dev -p 3000
 
 # Run migrations
-./myapp migration
+./gear migration
 
 # Start production server
-./myapp run production -p 8080
+./gear run production -p 8080
 
 # Get help
-./myapp --help
+./gear --help
 ```
 
 ## Contributing
