@@ -57,8 +57,13 @@ import (
 //		return nil
 //	}
 func (a *AutoCompile) Run(close chan int, port int) error {
+	stop := make(chan struct{})
 
-	_, err := config.Config.Http(port, config.Config.Db)
+	go func() {
+		<-close
+		stop <- struct{}{}
+	}()
+	err := config.Config.Http(port, config.Config.Db, stop)
 	if err != nil {
 		log.Println(err)
 	}

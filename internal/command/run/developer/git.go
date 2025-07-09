@@ -4,14 +4,10 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/fatih/color"
 )
-
 func (a *AutoCompile) Chenges() (bool, error) {
 	command := exec.Command("git", "status")
-	// command.Dir = a.ProjectPath
-	color.Red(a.ProjectPath)
-	
+	command.Dir = a.ProjectPath
 
 	statusOutput, err := command.Output()
 	if err != nil {
@@ -34,3 +30,5 @@ func (a *AutoCompile) Chenges() (bool, error) {
 	}
 	return false, nil
 }
+
+

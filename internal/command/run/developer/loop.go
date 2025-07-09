@@ -26,8 +26,10 @@ func (a *AutoCompile) Loop() error {
 
 			close = make(chan int)
 			go a.Run(close, a.Port)
+
 		}
 
 		time.Sleep(time.Second * 2)
+
 	}
 }
