@@ -1,4 +1,4 @@
-# Gear Framework
+# Gear
 
 A lightweight Go CLI framework for rapid web application development with built-in database migrations, HTTP server management, and auto-recompilation features.
 
